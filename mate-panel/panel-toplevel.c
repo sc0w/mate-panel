@@ -1342,11 +1342,26 @@ static void panel_toplevel_update_hide_buttons(PanelToplevel* toplevel)
 	}
 
 	/* set size after setting the arrow */
-	if (toplevel->priv->buttons_enabled) {
-		gtk_widget_set_size_request (toplevel->priv->hide_button_top,    panel_size, panel_size);
-		gtk_widget_set_size_request (toplevel->priv->hide_button_bottom, panel_size, panel_size);
-		gtk_widget_set_size_request (toplevel->priv->hide_button_left,   panel_size, panel_size);
-		gtk_widget_set_size_request (toplevel->priv->hide_button_right,  panel_size, panel_size);
+	if ((panel_size < 20) || (toplevel->priv->buttons_enabled)) {
+		gtk_widget_set_size_request (toplevel->priv->hide_button_top,    panel_size, 18);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_bottom, panel_size, 18);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_left,   18, panel_size);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_right,  18, panel_size);
+	} else if ((panel_size < 40) || (toplevel->priv->buttons_enabled)) {
+		gtk_widget_set_size_request (toplevel->priv->hide_button_top,    panel_size, 22);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_bottom, panel_size, 22);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_left,   22, panel_size);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_right,  22, panel_size);
+	} else if ((panel_size < 60) || (toplevel->priv->buttons_enabled)) {
+		gtk_widget_set_size_request (toplevel->priv->hide_button_top,    panel_size, 26);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_bottom, panel_size, 26);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_left,   26, panel_size);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_right,  26, panel_size);
+	} else {
+		gtk_widget_set_size_request (toplevel->priv->hide_button_top,    panel_size, 30);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_bottom, panel_size, 30);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_left,   30, panel_size);
+		gtk_widget_set_size_request (toplevel->priv->hide_button_right,  30, panel_size);
 	}
 }
 
